@@ -1,0 +1,3 @@
+c:\users\kurt\documents\visual studio 2010\Projects\SpriteTesting4\SpriteTesting4\SpriteTesting4Content\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\lado\Documents\Visual Studio 2010\Projects\SpriteTesting4\SpriteTesting4\SpriteTesting4Content\obj\x86\Debug\SpriteTesting4Content.contentprojResolveAssemblyReference.cache
+C:\Users\lado\Documents\Visual Studio 2010\Projects\SpriteTesting4 - Copy\SpriteTesting4\SpriteTesting4Content\obj\x86\Debug\SpriteTesting4Content.contentprojResolveAssemblyReference.cache
