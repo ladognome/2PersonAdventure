@@ -14,6 +14,7 @@
 #include <SFML/Network.hpp>
 using namespace sf;
 #include <string>
+using namespace std;
 
 #pragma unmanaged
 BOOL APIENTRY DllMain( HANDLE hModule, 
@@ -35,10 +36,10 @@ BOOL APIENTRY DllMain( HANDLE hModule,
 IAGSEditor *editor;
 
 const char *ourScriptHeader =
-	"import void SendData(char*, unsigned short);\r\n"
-	"import int ReceiveData(char*, std::size_t, unsigned short);\r\n"
-	"import std::string getFriendIP(void);\r\n"
-	"import void setFriendIP(const std::string &);\r\n";
+	/*"import void SendData(char*, unsigned short);\r\n"
+	"import int ReceiveData(char*, std::size_t, unsigned short);\r\n"*/
+	"import string getFriendIP();\r\n"
+	"import void setFriendIP(string);\r\n";
 
 LPCSTR AGS_GetPluginName(void) {
 	// Return the plugin description
@@ -91,15 +92,15 @@ sf::IpAddress friendIP;
 // Your address in the world wide web (like 83.2.124.68 -- the one you get with www.whatismyip.org)
 sf::IpAddress myWebIP = sf::IpAddress::getPublicAddress();
 
-std::string getFriendIP(void)
+string getFriendIP()
 {
 	return friendIP.toString();
 }
-void setFriendIP(const std::string & IP)
+void setFriendIP(string IP)
 {
 	friendIP = IpAddress(IP);
 }
-
+/*
 int SendData(char data[1000], unsigned short port)
 {
 	// Create the UDP socket
@@ -143,7 +144,7 @@ int ReceiveData(char data[1000], std::size_t received, unsigned short port)
 	//std::cout << "Received from " << friendIP << " on port " << port << std::endl;
 	Socket.unbind();
 	return 0;
-}
+}*/
 
 void AGS_EngineStartup (IAGSEngine *lpEngine) {
 	engine = lpEngine;
@@ -153,8 +154,8 @@ void AGS_EngineStartup (IAGSEngine *lpEngine) {
 		engine->AbortGame ("Engine interface is too old. You need a newer version of AGS.");
 	}
 
-	engine->RegisterScriptFunction ("SendData", SendData);
-	engine->RegisterScriptFunction ("ReceiveData", ReceiveData);
+	//engine->RegisterScriptFunction ("SendData", SendData);
+	//engine->RegisterScriptFunction ("ReceiveData", ReceiveData);
 	engine->RegisterScriptFunction ("setFriendIP", setFriendIP);
 	engine->RegisterScriptFunction ("getFriendIP", getFriendIP);
 	engine->RequestEventHook (AGSE_SAVEGAME);
