@@ -9,9 +9,9 @@ namespace AGSMultiplayer {
 
 	public ref class AGSMultiplayer
 	{
-		void SendData(sf::Packet, unsigned short);
+		/*void SendData(sf::Packet, unsigned short);
 		int ReceiveData(sf::Packet, unsigned short);
 		sf::IpAddress getFriendIP(void);
-		void setFriendIP(sf::IpAddress);
+		void setFriendIP(sf::IpAddress);*/
 	};
 }

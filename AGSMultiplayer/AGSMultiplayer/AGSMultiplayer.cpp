@@ -11,6 +11,9 @@
 #define THIS_IS_THE_PLUGIN
 #include "agsplugin.h"
 
+#include <SFML/Network.hpp>
+using namespace sf;
+#include <string>
 
 #pragma unmanaged
 BOOL APIENTRY DllMain( HANDLE hModule, 
@@ -32,10 +35,10 @@ BOOL APIENTRY DllMain( HANDLE hModule,
 IAGSEditor *editor;
 
 const char *ourScriptHeader =
-	"import void SendData(sf::Packet, unsigned short);\r\n"
-	"import int ReceiveData(sf::Packet, unsigned short);\r\n"
-	"import sf::IpAddress getFriendIP(void);\r\n"
-	"import void setFriendIP(sf::IpAddress);\r\n";
+	"import void SendData(char*, unsigned short);\r\n"
+	"import int ReceiveData(char*, std::size_t, unsigned short);\r\n"
+	"import std::string getFriendIP(void);\r\n"
+	"import void setFriendIP(const std::string &);\r\n";
 
 LPCSTR AGS_GetPluginName(void) {
 	// Return the plugin description
@@ -88,16 +91,16 @@ sf::IpAddress friendIP;
 // Your address in the world wide web (like 83.2.124.68 -- the one you get with www.whatismyip.org)
 sf::IpAddress myWebIP = sf::IpAddress::getPublicAddress();
 
-sf::IpAddress getFriendIP(void)
+std::string getFriendIP(void)
 {
-	return friendIP;
+	return friendIP.toString();
 }
-void setFriendIP(sf::IpAddress IP)
+void setFriendIP(const std::string & IP)
 {
-	friendIP = IP;
+	friendIP = IpAddress(IP);
 }
 
-int SendData(sf::Packet packet, unsigned short port)
+int SendData(char data[1000], unsigned short port)
 {
 	// Create the UDP socket
 	sf::UdpSocket Socket;
@@ -106,7 +109,7 @@ int SendData(sf::Packet packet, unsigned short port)
 	//send (Packet &packet, const IpAddress &remoteAddress, unsigned short remotePort)
 	if (friendIP == sf::IpAddress::None)
 	{
-		if (Socket.send(packet, friendIP, port) != sf::Socket::Done)
+		if (Socket.send(data, sizeof(data), friendIP, port) != sf::Socket::Done)
 		{
 			//Socket.unbind();
 			return -1;
@@ -118,7 +121,7 @@ int SendData(sf::Packet packet, unsigned short port)
 	return -1;
 }
 
-int ReceiveData(sf::Packet packet, unsigned short port)
+int ReceiveData(char data[1000], std::size_t received, unsigned short port)
 {
 	// Create the UDP socket
 	sf::UdpSocket Socket;
@@ -132,7 +135,7 @@ int ReceiveData(sf::Packet packet, unsigned short port)
 
 	//UDP socket
 	//receive (Packet &packet, IpAddress &remoteAddress, unsigned short &remotePort)
-	if (Socket.receive(packet, friendIP, port) != sf::Socket::Done)
+	if (Socket.receive(data, sizeof(data), received, friendIP, port) != sf::Socket::Done)
 	{
 		Socket.unbind();
 		return -1;

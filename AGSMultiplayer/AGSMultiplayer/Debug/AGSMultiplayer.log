@@ -1,7 +1,7 @@
-﻿Build started 7/15/2013 5:37:50 PM.
+﻿Build started 7/16/2013 2:20:58 PM.
      1>Project "C:\Users\lado\documents\visual studio 2010\Projects\AGSMultiplayer\AGSMultiplayer\AGSMultiplayer.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Touching "Debug\AGSMultiplayer.unsuccessfulbuild".
+         Creating "Debug\AGSMultiplayer.unsuccessfulbuild" because "AlwaysCreate" was specified.
        GenerateTargetFrameworkMonikerAttribute:
        Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
        ClCompile:
@@ -18,13 +18,24 @@
          Debug\Stdafx.obj
          "Debug\.NETFramework,Version=v4.0.AssemblyAttributes.obj"
             Creating library sfml-network-d.lib and object sfml-network-d.exp
-     1>AGSMultiplayer.obj : error LNK2020: unresolved token (06000001) AGSMultiplayer.AGSMultiplayer::SendData
-     1>AGSMultiplayer.obj : error LNK2020: unresolved token (06000002) AGSMultiplayer.AGSMultiplayer::ReceiveData
-     1>AGSMultiplayer.obj : error LNK2020: unresolved token (06000003) AGSMultiplayer.AGSMultiplayer::getFriendIP
-     1>AGSMultiplayer.obj : error LNK2020: unresolved token (06000004) AGSMultiplayer.AGSMultiplayer::setFriendIP
-     1>C:\Users\lado\documents\visual studio 2010\Projects\AGSMultiplayer\Debug\AGSMultiplayer.dll : fatal error LNK1120: 4 unresolved externals
-     1>Done Building Project "C:\Users\lado\documents\visual studio 2010\Projects\AGSMultiplayer\AGSMultiplayer\AGSMultiplayer.vcxproj" (build target(s)) -- FAILED.
+     1>sfml-network-s-d.lib(Http.cpp.obj) : warning LNK4099: PDB 'sfml-network-s-d.pdb' was not found with 'sfml-network-s-d.lib(Http.cpp.obj)' or at 'C:\Users\lado\documents\visual studio 2010\Projects\AGSMultiplayer\Debug\sfml-network-s-d.pdb'; linking object as if no debug info
+     1>sfml-network-s-d.lib(IpAddress.cpp.obj) : warning LNK4099: PDB 'sfml-network-s-d.pdb' was not found with 'sfml-network-s-d.lib(IpAddress.cpp.obj)' or at 'C:\Users\lado\documents\visual studio 2010\Projects\AGSMultiplayer\Debug\sfml-network-s-d.pdb'; linking object as if no debug info
+     1>sfml-network-s-d.lib(Packet.cpp.obj) : warning LNK4099: PDB 'sfml-network-s-d.pdb' was not found with 'sfml-network-s-d.lib(Packet.cpp.obj)' or at 'C:\Users\lado\documents\visual studio 2010\Projects\AGSMultiplayer\Debug\sfml-network-s-d.pdb'; linking object as if no debug info
+     1>sfml-network-s-d.lib(Socket.cpp.obj) : warning LNK4099: PDB 'sfml-network-s-d.pdb' was not found with 'sfml-network-s-d.lib(Socket.cpp.obj)' or at 'C:\Users\lado\documents\visual studio 2010\Projects\AGSMultiplayer\Debug\sfml-network-s-d.pdb'; linking object as if no debug info
+     1>sfml-network-s-d.lib(TcpSocket.cpp.obj) : warning LNK4099: PDB 'sfml-network-s-d.pdb' was not found with 'sfml-network-s-d.lib(TcpSocket.cpp.obj)' or at 'C:\Users\lado\documents\visual studio 2010\Projects\AGSMultiplayer\Debug\sfml-network-s-d.pdb'; linking object as if no debug info
+     1>sfml-network-s-d.lib(UdpSocket.cpp.obj) : warning LNK4099: PDB 'sfml-network-s-d.pdb' was not found with 'sfml-network-s-d.lib(UdpSocket.cpp.obj)' or at 'C:\Users\lado\documents\visual studio 2010\Projects\AGSMultiplayer\Debug\sfml-network-s-d.pdb'; linking object as if no debug info
+     1>sfml-network-s-d.lib(SocketImpl.cpp.obj) : warning LNK4099: PDB 'sfml-network-s-d.pdb' was not found with 'sfml-network-s-d.lib(SocketImpl.cpp.obj)' or at 'C:\Users\lado\documents\visual studio 2010\Projects\AGSMultiplayer\Debug\sfml-network-s-d.pdb'; linking object as if no debug info
+     1>sfml-system-s-d.lib(Err.cpp.obj) : warning LNK4099: PDB 'sfml-system-s-d.pdb' was not found with 'sfml-system-s-d.lib(Err.cpp.obj)' or at 'C:\Users\lado\documents\visual studio 2010\Projects\AGSMultiplayer\Debug\sfml-system-s-d.pdb'; linking object as if no debug info
+     1>sfml-system-s-d.lib(String.cpp.obj) : warning LNK4099: PDB 'sfml-system-s-d.pdb' was not found with 'sfml-system-s-d.lib(String.cpp.obj)' or at 'C:\Users\lado\documents\visual studio 2010\Projects\AGSMultiplayer\Debug\sfml-system-s-d.pdb'; linking object as if no debug info
+     1>sfml-system-s-d.lib(Time.cpp.obj) : warning LNK4099: PDB 'sfml-system-s-d.pdb' was not found with 'sfml-system-s-d.lib(Time.cpp.obj)' or at 'C:\Users\lado\documents\visual studio 2010\Projects\AGSMultiplayer\Debug\sfml-system-s-d.pdb'; linking object as if no debug info
+         AGSMultiplayer.vcxproj -> C:\Users\lado\documents\visual studio 2010\Projects\AGSMultiplayer\Debug\AGSMultiplayer.dll
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\lado\documents\visual studio 2010\Projects\AGSMultiplayer\Debug\AGSMultiplayer.dll;#2" /manifest Debug\AGSMultiplayer.dll.intermediate.manifest
+       FinalizeBuildStatus:
+         Deleting file "Debug\AGSMultiplayer.unsuccessfulbuild".
+         Touching "Debug\AGSMultiplayer.lastbuildstate".
+     1>Done Building Project "C:\Users\lado\documents\visual studio 2010\Projects\AGSMultiplayer\AGSMultiplayer\AGSMultiplayer.vcxproj" (build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:01.56
+Time Elapsed 00:00:01.97
