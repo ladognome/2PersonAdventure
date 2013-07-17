@@ -1,4 +1,4 @@
-﻿Build started 7/16/2013 2:47:18 PM.
+﻿Build started 7/17/2013 2:33:47 PM.
      1>Project "C:\Users\lado\documents\visual studio 2010\Projects\AGSMultiplayer\AGSMultiplayer\AGSMultiplayer.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\AGSMultiplayer.unsuccessfulbuild" because "AlwaysCreate" was specified.
@@ -38,4 +38,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.86
+Time Elapsed 00:00:01.87
