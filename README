@@ -1,0 +1,14 @@
+===== 2 Person Adventure Game (May replace with name of game) =====
+
+Game Description:
+=================
+Description of game purpose and expected functionality goes here
+
+Directory Structure:
+====================
+. - the main directory will contain all of the source code for the game.
+
+images/ - all game images will be put in this directory
+
+web/ - all network communication code will go in this directory.
+
