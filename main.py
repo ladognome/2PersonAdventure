@@ -5,14 +5,16 @@ import sys, pygame
 
 pygame.init()
 
-size = width, height = 320, 240
+size = width, height = 640, 480
 speed = [2,2]
 black = 0,0,0
 
 screen = pygame.display.set_mode(size)
 
 ball = pygame.image.load(os.path.join("images","ball.bmp"))
+splash = pygame.image.load(os.path.join("images","rosieSplash.png"))
 ballrect = ball.get_rect()
+splashrect = splash.get_rect()
 
 while 1:
     for event in pygame.event.get():
@@ -25,5 +27,6 @@ while 1:
         speed[1] = -speed[1]
 
     screen.fill(black)
+    screen.blit(splash, splashrect)
     screen.blit(ball, ballrect)
     pygame.display.flip()
