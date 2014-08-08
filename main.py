@@ -2,6 +2,8 @@
 
 import os
 import sys, pygame
+import copy
+import web.client
 
 pygame.init()
 
@@ -25,6 +27,8 @@ CHAT_Y = int(height*.80)
 CHAT_W = width
 CHAT_H = height - CHAT_Y
 
+CHAT_HIST_LEN = 5
+
 # Setup the screen size
 screen = pygame.display.set_mode(size)
 
@@ -37,11 +41,16 @@ ball = pygame.image.load(os.path.join("images","ball.bmp"))
 splash = pygame.image.load(os.path.join("images","rosieSplash.png"))
 ballrect = ball.get_rect()
 splashrect = splash.get_rect()
-chatRect = pygame.Rect(CHAT_X,CHAT_Y,CHAT_W,CHAT_H)
+chatAreaRect = pygame.Rect(CHAT_X,CHAT_Y,CHAT_W,CHAT_H)
 chatDisp = False # control whether chat window is displayed and excepting text.
 chatStr = ""
+chatRepStr = ""
+chatHistory = []
 chatFont = pygame.font.Font(None,14)
+chatHistFontSurf = chatFont.render("\n".join(chatHistory),1,white) # 1 for smooth edges on text
 chatFontSurf = chatFont.render(chatStr,1,white) # 1 for smooth edges on text
+chatTypeRect = chatFontSurf.get_rect().move((CHAT_X,CHAT_Y + CHAT_H*.80))
+chatClient = web.client.ChatClient()
 
 #################
 # MAIN LOOP
@@ -57,6 +66,10 @@ while 1:
         if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
             if (chatDisp):
                 chatDisp = False
+                chatClient.send(chatStr)
+                chatHistory.append(copy.deepcopy(chatStr))
+                if (len(chatHistory) > CHAT_HIST_LEN):
+                    chatHistory.pop(0)
                 chatStr = ""
                 chatFontSurf = chatFont.render(chatStr,1,white)
             else:
@@ -85,8 +98,20 @@ while 1:
 
     # Update the chat box by clearing it and then
     # displaying the appropriate text.
+    pygame.draw.rect(screen, black, chatAreaRect)
     if (chatDisp == True):
-        pygame.draw.rect(screen, black, chatRect)
-        screen.blit(chatFontSurf, chatRect)
+        screen.blit(chatFontSurf, chatTypeRect)
+    
+    chatRepStr = chatClient.recv()
+    if (len(chatRepStr) > 0):
+        chatHistory.append(copy.deepcopy(chatRepStr))
+        if (len(chatHistory) > CHAT_HIST_LEN):
+            chatHistory.pop(0)
+    i = 0
+    for line in chatHistory:
+        chatHistFontSurf = chatFont.render(line,1,white) # 1 for smooth edges on text
+        chatHistRect = chatHistFontSurf.get_rect().move(CHAT_X, CHAT_Y + i*chatFont.get_linesize())
+        screen.blit(chatHistFontSurf, chatHistRect)
+        i += 1
 
     pygame.display.flip()
