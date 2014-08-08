@@ -17,6 +17,7 @@ size = width, height = 640, 480
 speed = [2,2]
 # set color black...
 black = 0,0,0
+grey  = 50,50,50
 white = 255,255,255
 
 # set chat location (upper left corner is at left border 80% of the way down the y axis)
@@ -81,8 +82,9 @@ while 1:
                 if (pressed[pygame.K_LSHIFT] or pressed[pygame.K_RSHIFT]) and (myKey >= pygame.K_a and myKey <= pygame.K_z):
                     myKey -= 32
                 #print "Pressed key w/ number: %s =" % (chr(myKey), ), myKey
-                chatStr += chr(myKey)
-                chatFontSurf = chatFont.render(chatStr,1,white)
+                if (len(chatStr) < 150):
+                    chatStr += chr(myKey)
+                    chatFontSurf = chatFont.render(chatStr,1,white)
 
     # Move the ball...
     ballrect = ballrect.move(speed)
@@ -98,9 +100,11 @@ while 1:
 
     # Update the chat box by clearing it and then
     # displaying the appropriate text.
-    pygame.draw.rect(screen, black, chatAreaRect)
     if (chatDisp == True):
+        pygame.draw.rect(screen, grey, chatAreaRect)
         screen.blit(chatFontSurf, chatTypeRect)
+    else:
+        pygame.draw.rect(screen, black, chatAreaRect)
     
     chatRepStr = chatClient.recv()
     if (len(chatRepStr) > 0):
