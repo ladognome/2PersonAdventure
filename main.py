@@ -1,5 +1,4 @@
 #!/usr/bin/python
-
 import os
 import sys, pygame
 import copy
@@ -47,10 +46,10 @@ chatDisp = False # control whether chat window is displayed and excepting text.
 chatStr = ""
 chatRepStr = ""
 chatHistory = []
-chatFont = pygame.font.Font(None,14)
+chatFont = pygame.font.Font(None,18)
 chatHistFontSurf = chatFont.render("\n".join(chatHistory),1,white) # 1 for smooth edges on text
 chatFontSurf = chatFont.render(chatStr,1,white) # 1 for smooth edges on text
-chatTypeRect = chatFontSurf.get_rect().move((CHAT_X,CHAT_Y + CHAT_H*.80))
+chatTypeRect = chatFontSurf.get_rect().move((CHAT_X,CHAT_Y + CHAT_H*0.8))
 chatClient = web.client.ChatClient()
 
 #################
@@ -76,13 +75,15 @@ while 1:
             else:
                 chatDisp = True
         if (chatDisp):
-            if event.type == pygame.KEYDOWN and event.key >= pygame.K_SPACE and event.key <= pygame.K_KP_EQUALS:
+            if event.type == pygame.KEYDOWN and ((event.key >= pygame.K_SPACE and event.key <= pygame.K_KP_EQUALS) or event.key == pygame.K_BACKSPACE):
                 myKey = event.key
                 # Test to see if shift was pressed with a letter key.
                 if (pressed[pygame.K_LSHIFT] or pressed[pygame.K_RSHIFT]) and (myKey >= pygame.K_a and myKey <= pygame.K_z):
                     myKey -= 32
-                #print "Pressed key w/ number: %s =" % (chr(myKey), ), myKey
-                if (len(chatStr) < 150):
+		if (myKey == pygame.K_BACKSPACE):
+		    chatStr = chatStr[:-1]
+                    chatFontSurf = chatFont.render(chatStr,1,white)
+                elif (len(chatStr) < 150):
                     chatStr += chr(myKey)
                     chatFontSurf = chatFont.render(chatStr,1,white)
 
