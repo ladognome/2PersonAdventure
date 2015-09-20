@@ -3,7 +3,7 @@
 import socket
 import sys
 
-PORT=8081
+PORT=8080#8081
 HOST=''
 
 s = socket.socket()
