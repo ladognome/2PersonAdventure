@@ -41,6 +41,8 @@ screen = pygame.display.set_mode(size)
 # setup important global variables.
 ball = pygame.image.load(os.path.join("images","ball.bmp"))
 splash = pygame.image.load(os.path.join("images","rosieSplash.png"))
+cursor = pygame.image.load(os.path.join("images","cursor.png"))
+cursorRect = cursor.get_rect()
 ballrect = ball.get_rect()
 splashrect = splash.get_rect()
 chatAreaRect = pygame.Rect(CHAT_X,CHAT_Y,CHAT_W,CHAT_H)
@@ -54,8 +56,10 @@ chatFontSurf = chatFont.render(chatStr,1,white) # 1 for smooth edges on text
 chatTypeRect = chatFontSurf.get_rect().move((CHAT_X,CHAT_Y + CHAT_H*0.8))
 #chatClient = web.client.ChatClient()
 player_sprites = pygame.sprite.Group() # list of player sprites (probably only 1)
-rosie = entities.player.player("rosie")
+rosie = entities.player.player("rhotrax")
 rosie.add(player_sprites)
+
+pygame.mouse.set_visible(False)
 
 #################
 # MAIN LOOP
@@ -91,10 +95,12 @@ while 1:
                 elif (len(chatStr) < 150):
                     chatStr += chr(myKey)
                     chatFontSurf = chatFont.render(chatStr,1,white)
-        if (event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE):
-            rosie.rect.midbottom=[random.randrange(1,640),random.randrange(240,480)]
-            #rosie.rect.move_ip(10,10)
-            #rosie.rect.x += 10
+
+        # Mouse Events
+        if (event.type == pygame.MOUSEBUTTONDOWN and event.button == 1):
+            rosie.waypoints = [pygame.mouse.get_pos()]  #todo: replace with path calculator (collision detection, etc)
+        if (event.type == pygame.MOUSEMOTION):
+            cursorRect.center = pygame.mouse.get_pos()
 
     # Move the ball...
     ballrect = ballrect.move(speed)
@@ -110,6 +116,7 @@ while 1:
     screen.blit(splash, splashrect)
     screen.blit(ball, ballrect)
     player_sprites.draw(screen)
+    screen.blit(cursor, cursorRect)
 
     # Update the chat box by clearing it and then
     # displaying the appropriate text.
